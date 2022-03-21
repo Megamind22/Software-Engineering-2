@@ -1,4 +1,4 @@
-# Software-Engineering-2
+# Courses Management System
 This system helps to manage student, instructor and rooms in any educational place. It mainly contains important modules like
 1. Admin Module
 a) Login and logout (when login student, instructor, and admin see view different for
