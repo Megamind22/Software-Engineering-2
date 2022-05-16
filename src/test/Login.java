@@ -5,13 +5,13 @@ import java.sql.*;
 
 public class Login extends DatabaseConnection {
 
-    public static String testlogin(String userName, int password) {
+    public  String testlogin(String userName, int password) {
 
-        DatabaseConnection.testConnection();
+        testConnection();
         String QueryStatement = "select user_type from users where userName='" + userName + "'and password=" + password + "";
         ResultSet typeOfUser;
         try {
-            typeOfUser = DatabaseConnection.statement.executeQuery(QueryStatement);
+            typeOfUser = statement.executeQuery(QueryStatement);
             typeOfUser.next();
             return typeOfUser.getString("user_type");
 
@@ -19,7 +19,7 @@ public class Login extends DatabaseConnection {
             System.out.println(ex);
         }
 
-        DatabaseConnection.closeConnection();
+        closeConnection();
 
         return "Error";
     }
