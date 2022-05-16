@@ -18,6 +18,7 @@ public class loginGui extends JFrame implements ActionListener{
     JButton b_login;
     
     
+    Login test_login=new Login();
     
      public loginGui(){
          
@@ -54,21 +55,21 @@ public class loginGui extends JFrame implements ActionListener{
              
                 String userName = t_user.getText();
                 String password = p_pass.getText();
-            if(Login.testlogin(userName, Integer.parseInt(password)).equals("Error")){
+            if(test_login.testlogin(userName, Integer.parseInt(password)).equals("Error")){
       
                 JOptionPane.showMessageDialog(null, "Invalid Login", "Error", JOptionPane.ERROR_MESSAGE);
                 System.exit(0);
          }else{
-                if (Login.testlogin(userName, Integer.parseInt(password)).equals("STD")){
+                if (test_login.testlogin(userName, Integer.parseInt(password)).equals("STD")){
                     Student student=new Student(userName,Integer.parseInt(password));
                     studentGui sg=new studentGui(this,student);
                      sg.showStudentFrame();
                 }
-                if (Login.testlogin(userName, Integer.parseInt(password)).equals("TA")){
+                if (test_login.testlogin(userName, Integer.parseInt(password)).equals("TA")){
                     Instructor instructor=new Instructor(userName,Integer.parseInt(password));
                     instructorGui ig=new instructorGui(this,instructor);
                      ig.showInstructorFrame();
-                } if (Login.testlogin(userName, Integer.parseInt(password)).equals("admin")){
+                } if (test_login.testlogin(userName, Integer.parseInt(password)).equals("admin")){
                     adminGui dg=new adminGui();
                      dg.showAdminFrame();
                 }

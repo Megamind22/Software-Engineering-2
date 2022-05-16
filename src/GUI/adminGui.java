@@ -41,6 +41,7 @@ public class adminGui extends JFrame implements ActionListener {
 
     private Admin adminSystem = new Admin();
     private CoursesModule coursemodule=new CoursesModule();
+    //private CourseSQl UpdateCourse = new CourseSQl() ; 
     CourseSQl CourseUpdate=new CourseSQl();
     JFrame AdmFrame = new JFrame();
     JFrame AddSTU = new JFrame();
@@ -163,7 +164,7 @@ public class adminGui extends JFrame implements ActionListener {
       b_AUDLCrs=new JButton("Update");
       b_ADLCrsLogOut=new JButton("back");
       
-      //Update_Course
+     // Update_Course
       b_AUpdateCourse=new JButton("UPDATE_COURSE");
       L_ACrsUID=new JLabel("Enter_Course_ID");
       L_AUPRoom=new JLabel("Enter New Room");
@@ -310,7 +311,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUSTUU) {
-            AdminSQl.updateStudent(t_AUSTUPID.getText(),t_AUSTUNID.getText());
+            adminSystem.updateStudent(t_AUSTUPID.getText(),t_AUSTUNID.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateSTU.dispose();
 
@@ -327,7 +328,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUINSU) {
-            AdminSQl.updateInstructor(t_AUINSPID.getText(),t_AUINSNID.getText());
+            adminSystem.updateInstructor(t_AUINSPID.getText(),t_AUINSNID.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateINS.dispose();
 
@@ -426,7 +427,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AURoomU) {
-            UpdateCourseSQL.UpdateRoom(t_ACrsUID.getText(),t_AUPRoom.getText());
+            coursemodule.UpdateRoom(t_ACrsUID.getText(),t_AUPRoom.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateRoom.dispose();
         }
@@ -440,7 +441,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUBranchU) {
-           UpdateCourseSQL.Updatebranch(t_ACrsUID.getText(),t_AUPBranch.getText());
+           coursemodule.Updatebranch(t_ACrsUID.getText(),t_AUPBranch.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateBranch.dispose();
         }
@@ -454,7 +455,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUPriceU) {
-             UpdateCourseSQL.UpdateCoursePrice(t_ACrsUID.getText(),t_AUPPrice.getText());
+             coursemodule.UpdateCoursePrice(t_ACrsUID.getText(),t_AUPPrice.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdatePrice.dispose();
         }
@@ -468,7 +469,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUCrsDaysU) {
-             UpdateCourseSQL.UpdateDaysOfCourse(t_ACrsUID.getText(),t_AUPCrsDays.getText());
+             coursemodule.UpdateDaysOfCourse(t_ACrsUID.getText(),t_AUPCrsDays.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateCrsDays.dispose();
         }
@@ -482,7 +483,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUSTU) {
-             UpdateCourseSQL.UpdateStartDate(t_ACrsUID.getText(),t_AUPSTDate.getText());
+             coursemodule.UpdateStartDate(t_ACrsUID.getText(),t_AUPSTDate.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateSTDate.dispose();
         }
@@ -496,7 +497,7 @@ public class adminGui extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == b_AUEndU) {
-            UpdateCourseSQL.UpdateEndDate(t_ACrsUID.getText(),t_AUPEndDate.getText());
+            coursemodule.UpdateEndDate(t_ACrsUID.getText(),t_AUPEndDate.getText());
             JOptionPane.showMessageDialog(null, "Vaild Update", "MESSAGE", JOptionPane.INFORMATION_MESSAGE);
             UpdateEndDate.dispose();
         }
@@ -562,7 +563,7 @@ public class adminGui extends JFrame implements ActionListener {
               AdmFrame.add(b_ARemoveCourse); AdmFrame.add(b_AUpdateCourse); AdmFrame.add(b_AShowStudents);
               AdmFrame.add(b_AShowInstructors); AdmFrame.add(b_ALogOut);
               AdmFrame.setVisible(true);
-             // this.setVisible(false);
+              this.setVisible(false);
               b_ALogOut.addActionListener(this);
               b_AAddSTU.addActionListener(this);
               
