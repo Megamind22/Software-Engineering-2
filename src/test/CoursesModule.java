@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 
 public class CoursesModule extends CourseSQl{
 
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    private  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 
     private ArrayList<CourseComponent> courses = new ArrayList<>();
 
