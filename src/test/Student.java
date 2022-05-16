@@ -2,7 +2,7 @@ package test;
 
 import Database.StudentSQl;
 
-public class Student {
+public class Student extends StudentSQl {
 
     private String name;
     private int id;
@@ -54,17 +54,17 @@ public class Student {
     }
 
     public String showGrade(String courseID) {
-        return StudentSQl.showAllStudentGrade(this.id , courseID);
+        return showAllStudentGrade(this.id , courseID);
     }/*End_Of_showGrade*/
 
     public void makeSurvey(String courseName, String thinkOPinion) {
-        StudentSQl.makeSurvey(this.id, courseName, thinkOPinion);
+        makeSurvey(this.id, courseName, thinkOPinion);
         System.out.println("Done");
     }/*End_Of_showGrade*/
 
     public String showAllCourses() {
 
-        return StudentSQl.showAllCourses(this.id);
+        return showAllCourses(this.id);
     }/*End_Of_showGrade*/
 
   

@@ -2,7 +2,7 @@ package test;
 
 import Database.InstructorSQl;
 
-public class Instructor {
+public class Instructor extends InstructorSQl {
 
     private String Name;
     private int id;
@@ -47,12 +47,12 @@ public class Instructor {
 
     public void addGrade(int StudentId, String grade) {
 
-        InstructorSQl.addStudentGrade(StudentId, grade, this.id);
+        addStudentGrade(StudentId, grade, this.id);
 
     }/*End_Of_addGrade*/
 
     public String puplishGrades() {
-        return InstructorSQl.puplishStudentGrade(this.id);
+        return puplishStudentGrade(this.id);
 
     }/*End_Of_puplishGrades*/
 
