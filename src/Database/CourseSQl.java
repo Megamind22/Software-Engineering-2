@@ -4,49 +4,49 @@ import java.sql.*;
 import java.util.*;
 import test.CourseComponent;
 
-public  class CourseSQl {
+public  class CourseSQl extends DatabaseConnection implements UpdateCourseI{
 
-    public static void addCourse(CourseComponent course) {
-        DatabaseConnection.testConnection();
+    public  void addCourse(CourseComponent course) {
+        testConnection();
         String query = Query.addCourse(course);
         System.out.println(query);
         try {
-            ResultSet CourseDetials = DatabaseConnection.statement.executeQuery(query);
+            ResultSet CourseDetials = statement.executeQuery(query);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
     }/*End_Of_addCourse*/
 
-    public static void deleteCourse(String courseID) {
-        DatabaseConnection.testConnection();
+    public  void deleteCourse(String courseID) {
+        testConnection();
         String query = Query.deleteCourse(courseID);
         try {
-            ResultSet deleteCourse = DatabaseConnection.statement.executeQuery(query);
+            ResultSet deleteCourse = statement.executeQuery(query);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
     }/*End_Of_deleteCourse*/
 
-    public static ArrayList<String> nearToStartCourse() {
+    public  ArrayList<String> nearToStartCourse() {
         ArrayList<String> output = new ArrayList<>();
-        DatabaseConnection.testConnection();
+        testConnection();
         String query = Query.nearToStartCourses();
         try {
-            ResultSet StartCourse = DatabaseConnection.statement.executeQuery(query);
+            ResultSet StartCourse = statement.executeQuery(query);
             output = readStartCourses(StartCourse);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return output;
     }/*End_Of_nearToStartCourse*/
 
-    private static ArrayList<String> readStartCourses(ResultSet result) {
+    private  ArrayList<String> readStartCourses(ResultSet result) {
         ArrayList<String> output = new ArrayList<>();
         try {
             while (result.next()) {
@@ -59,22 +59,22 @@ public  class CourseSQl {
         return output;
     }/*End_Of_readStartCourses*/
 
-    public static ArrayList<String> nearToEnDCoures() {
+    public  ArrayList<String> nearToEnDCoures() {
         ArrayList<String> output = new ArrayList<>();
-        DatabaseConnection.testConnection();
+        testConnection();
         String query = Query.nearToEnDCoures();
         try {
-            ResultSet EnDCoures = DatabaseConnection.statement.executeQuery(query);
+            ResultSet EnDCoures = statement.executeQuery(query);
             output = readCoursesEndDate(EnDCoures);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return output;
     }/*End_Of_nearToEnDCoures*/
 
-    private static ArrayList<String> readCoursesEndDate(ResultSet result) {
+    private  ArrayList<String> readCoursesEndDate(ResultSet result) {
         ArrayList<String> output = new ArrayList<>();
         try {
             while (result.next()) {
@@ -87,22 +87,22 @@ public  class CourseSQl {
         return output;
     }/*End_Of_readCoursesEndDate*/
 
-    public static ArrayList<String> CourseIDQuery() {//؟؟
+    public  ArrayList<String> CourseIDQuery() {//؟؟
         ArrayList<String> output = new ArrayList<>();
-        DatabaseConnection.testConnection();
+        testConnection();
         String Query = "select cr_id  from COURSEDETAIL";
         try {
-            ResultSet id_StartCourse = DatabaseConnection.statement.executeQuery(Query);
+            ResultSet id_StartCourse = statement.executeQuery(Query);
             output = readIdForStartCourseFromDataBase(id_StartCourse);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return output;
     }/*End_Of_*/
 
-    private static ArrayList<String> readIdForStartCourseFromDataBase(ResultSet result) {
+    private  ArrayList<String> readIdForStartCourseFromDataBase(ResultSet result) {
         ArrayList<String> output = new ArrayList<>();
         try {
             while (result.next()) {
@@ -115,21 +115,21 @@ public  class CourseSQl {
         return output;
     }/*End_Of_readIdForStartCourseFromDataBase*/
 
-    public static String showStartCourseDetails(String COURSEID) {
-        DatabaseConnection.testConnection();
+    public  String showStartCourseDetails(String COURSEID) {
+        testConnection();
         String query = Query.getStartCourseDetails(COURSEID);
         try {
-            ResultSet Course_Details = DatabaseConnection.statement.executeQuery(query);
+            ResultSet Course_Details = statement.executeQuery(query);
             return PrintCourse_Details(Course_Details);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return "Error SQl Syntax";
     }/*End_Of_showStartCourseDetails*/
 
-    private static String PrintCourse_Details(ResultSet result) {
+    private  String PrintCourse_Details(ResultSet result) {
         String tempCourseDetail = "";
         try {
             while (result.next()) {
@@ -149,5 +149,59 @@ public  class CourseSQl {
         }
         return tempCourseDetail;
     }/*End_Of_PrintCourse_Details*/
+    
+    @Override
+    public  void UpdateRoomQuery(String CourseID, String NewRoom) {
+        testConnection();
+        String query = Query.UpdateRoom(CourseID, NewRoom);
+        executeQuery(query);
+    }/*End_Of_UpdateRoom*/
+
+    @Override
+    public  void UpdatebranchQuery(String CourseID, String NewBranch) {
+        testConnection();
+        String query =Query.Updatebranch(CourseID, NewBranch) ;
+        executeQuery(query);
+
+    }/*End_Of_Updatebranch*/
+
+    @Override
+    public  void UpdateCoursePriceQuery(String CourseID, String NewCoursePrice){
+        testConnection();
+        String query = Query.UpdateCoursePrice(CourseID, NewCoursePrice);
+        executeQuery(query);
+    }/*End_Of_*/
+
+    @Override
+    public  void UpdateStartDateQuery(String CourseID, String NewStartDate) {
+        testConnection();
+        String query = Query.UpdateStartDate(CourseID, NewStartDate);
+        executeQuery(query);
+    }/*End_Of_UpdateStartDate*/
+
+    @Override
+    public  void UpdateDaysOfCourseQuery(String CourseID, String NewDaysOfCourse) {
+        testConnection();
+        String query =Query.UpdateDaysOfCourse(CourseID, NewDaysOfCourse);
+        executeQuery(query);
+    }/*End_Of_UpdateDaysOfCourse*/
+
+    @Override
+    public  void UpdateEndDateQuery(String CourseID, String NewEndDate) {
+        testConnection();
+        String query = Query.UpdateEndDate(CourseID, NewEndDate);
+        executeQuery(query);
+    }/*End_Of_UpdateEndDate*/
+
+    private  void executeQuery(String Query) {
+        try {
+            statement.executeUpdate(Query);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } finally {
+            closeConnection();
+        }
+    }/*End_Of_executeQuery*/
+
 
 }/*End_Of_CourseSQl*/
