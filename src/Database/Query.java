@@ -156,7 +156,6 @@ public abstract class Query {
 
 
     public static String UpdateEndDate(String CourseID, String NewEndDate) {
-        DatabaseConnection.testConnection();
         return "UPDATE COURSEDETAIL set END_DATE ='" + NewEndDate + "' WHERE cr_id ='" + CourseID + "'  ";
     }/*End_Of_UpdateEndDate*/
 

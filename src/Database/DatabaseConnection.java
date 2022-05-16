@@ -6,11 +6,11 @@ import java.util.logging.Logger;
 
 public class DatabaseConnection {
 
-    private static String dbURL = "jdbc:oracle:thin:@localhost:1521:XE";
-    private static String username = null;
-    private static String password = null;
-    private static Connection connection;
-    protected static Statement statement;
+    private  String dbURL = "jdbc:oracle:thin:@localhost:1521:XE";
+    private  String username = "mohamed";
+    private  String password = "123";
+    private  Connection connection;
+    protected  Statement statement;
 
     public DatabaseConnection() {
 
@@ -21,10 +21,10 @@ public class DatabaseConnection {
         this.password = password;
     }/*End_Of_DatabaseConnection*/
 
-    protected static Boolean testConnection() {
+    protected  Boolean testConnection() {
 
         try {
-            DatabaseConnection.connection = DriverManager.getConnection(dbURL, username, password);
+            connection = DriverManager.getConnection(dbURL, username, password);
             statement = connection.createStatement();
             return true;
         } catch (SQLException ex) {
@@ -33,7 +33,7 @@ public class DatabaseConnection {
 
     }/*End_Of_testConnection*/
 
-    protected static void closeConnection() {
+    protected  void closeConnection() {
         try {
             connection.close();
         } catch (SQLException ex) {
