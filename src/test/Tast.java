@@ -9,7 +9,7 @@ public class Tast {
   
     public static void main(String[] args)  {
           
-        Database.DatabaseConnection connect=new DatabaseConnection("mohamed","123");
+        DatabaseConnection connect=new DatabaseConnection();
         Scanner read = new Scanner(System.in).useLocale(Locale.US);
         System.out.print("Enter Username :");
         System.out.print("Enter Password");

@@ -5,7 +5,7 @@ import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class CoursesModule {
+public class CoursesModule extends CourseSQl{
 
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 
@@ -16,34 +16,34 @@ public class CoursesModule {
     }/*End_Of_Constractor*/
 
     public void addCourse(CourseComponent course) {
-        CourseSQl.addCourse(course);
+        addCourse(course);
     }/*End_OF_addCourse*/
 
     public void deleteCourse(String courseID) {
 
-        CourseSQl.deleteCourse(courseID);
+        deleteCourse(courseID);
     }/*End_OF_deleteCourse*/
 
-    private static ArrayList<String> readCoursesStartdata() {
+    private  ArrayList<String> readCoursesStartdata() {
         ArrayList<String> Startdatas = new ArrayList<>(); //DatesOf start
-        Startdatas = CourseSQl.nearToStartCourse();
+        Startdatas = nearToStartCourse();
         return Startdatas;
     }/*End_OF_ShowCoursesStartdata*/
 
-    private static ArrayList<String> readCoursesEndDatas() {
+    private  ArrayList<String> readCoursesEndDatas() {
         ArrayList<String> endtdatas = new ArrayList<>(); //DatesOf start
-        endtdatas = CourseSQl.nearToEnDCoures();
+        endtdatas = nearToEnDCoures();
         return endtdatas;
     }/*End_OF_readCoursesEndDatas*/
 
-    private static ArrayList<String> readcoursesId() {
+    private  ArrayList<String> readcoursesId() {
         ArrayList<String> coursesIds = new ArrayList<>();
-        coursesIds = CourseSQl.CourseIDQuery();
+        coursesIds = CourseIDQuery();
         return coursesIds;
     }/*End_Of_readcoursesId*/
 
 
-    private static String readNearestStartCourseId(ArrayList<String> coursesStartDatas, ArrayList<String> coursesIds) throws ParseException {
+    private  String readNearestStartCourseId(ArrayList<String> coursesStartDatas, ArrayList<String> coursesIds) throws ParseException {
         String NearestStartCoursID = null;
         int numOf_CoursesStartDatas = coursesStartDatas.size() - 1;
         for (int date = 0; date <= numOf_CoursesStartDatas; date++) {
@@ -61,7 +61,7 @@ public class CoursesModule {
     }/*End_OF_read_NearestStartCourseId*/
 
 
-    private static String readNearestEndCourseId(ArrayList<String> coursesEndDatas, ArrayList<String> coursesIds) throws ParseException {
+    private  String readNearestEndCourseId(ArrayList<String> coursesEndDatas, ArrayList<String> coursesIds) throws ParseException {
         String NearestEndCoursID = null;
         int numOf_CoursesEndDatas = coursesEndDatas.size() - 1;
         for (int date = 0; date <= numOf_CoursesEndDatas; date++) {
@@ -85,7 +85,7 @@ public class CoursesModule {
         ArrayList<String> coursesIds = readcoursesId();
         String NearestStartCoursID = readNearestStartCourseId(Startdatas, coursesIds);
 
-        return CourseSQl.showStartCourseDetails(NearestStartCoursID);
+        return showStartCourseDetails(NearestStartCoursID);
     }/*End_OF_show_NearestStartCourseDetails*/
 
 
@@ -94,7 +94,30 @@ public class CoursesModule {
         ArrayList<String> coursesEnDdatas = readCoursesEndDatas();
         ArrayList<String> coursesIds = readcoursesId();
         String NearestEndCoursID = readNearestEndCourseId(coursesEnDdatas, coursesIds);
-        return CourseSQl.showStartCourseDetails(NearestEndCoursID);
+        return showStartCourseDetails(NearestEndCoursID);
     }/*End_OF_ShowNearestEndCoursDetails*/
+     public void UpdateRoom(String CourseID, String NewRoom) {
+        UpdateRoomQuery(CourseID, NewRoom);
+    }
+
+    public void Updatebranch(String CourseID, String NewBranch) {
+        UpdatebranchQuery(CourseID, NewBranch);
+    }
+
+    public void UpdateCoursePrice(String CourseID, String NewCoursePrice) {
+        UpdateCoursePriceQuery(CourseID, NewCoursePrice);
+    }
+
+    public void UpdateStartDate(String CourseID, String NewStartDate) {
+        UpdateStartDateQuery(CourseID, NewStartDate);
+    }
+
+    public void UpdateDaysOfCourse(String CourseID, String NewDaysOfCourse) {
+        UpdateDaysOfCourseQuery(CourseID, NewDaysOfCourse);
+    }
+
+    public void UpdateEndDate(String CourseID, String NewEndDate) {
+        UpdateEndDateQuery(CourseID, NewEndDate);
+    }
 
 }/*End_OF_Show_NearestEndCoursDetails*/
