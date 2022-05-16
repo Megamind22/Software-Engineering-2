@@ -2,37 +2,37 @@ package Database;
 
 import java.sql.*;
 
-public abstract class InstructorSQl {
+public abstract class InstructorSQl extends DatabaseConnection {
 
-    public static void addStudentGrade(int studentId, String grade, int instructorId) {
-        DatabaseConnection.testConnection();
+    public  void addStudentGrade(int studentId, String grade, int instructorId) {
+        testConnection();
 
         String query = Query.addStudentGrade(studentId, grade, instructorId);
         try {
-            DatabaseConnection.statement.executeUpdate(query);
+            statement.executeUpdate(query);
         } catch (SQLException ex) {
             System.out.println("Syntax Sql error");
         }
-        DatabaseConnection.closeConnection();
+        closeConnection();
     }/*End_Of_addStudentGrade*/
 
-    public static String puplishStudentGrade(int InstructorId) {
-        DatabaseConnection.testConnection();
+    public  String puplishStudentGrade(int InstructorId) {
+        testConnection();
 
         String query = Query.getStudentsGrades(InstructorId);
         try {
-            ResultSet dataGrade = DatabaseConnection.statement.executeQuery(query);
+            ResultSet dataGrade = statement.executeQuery(query);
             return readData(dataGrade);//readData ? 
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return "Error SqlSyntax ";
     }/*End_Of_puplishStudentGrade*/
 
 
-    private static String readData(ResultSet result) {
+    private  String readData(ResultSet result) {
 
         String tempGrade = "";
         try {

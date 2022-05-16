@@ -2,24 +2,24 @@ package Database;
 
 import java.sql.*;
 
-public abstract class StudentSQl {
+public abstract class StudentSQl extends DatabaseConnection  {
 
-    public static String showAllStudentGrade(int studentId,String courseID) {
-        DatabaseConnection.testConnection();
+    public  String showAllStudentGrade(int studentId,String courseID) {
+        testConnection();
         String query = Query.getStudentGrade(studentId,courseID);
         try {
-            ResultSet dataGrade = DatabaseConnection.statement.executeQuery(query);
+            ResultSet dataGrade = statement.executeQuery(query);
             return readGradeFromDataBase(dataGrade);
 
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return "swqs";
     }/*End_Of_showAllStudentGrade*/
 
-    private static String readGradeFromDataBase(ResultSet result) {
+    private  String readGradeFromDataBase(ResultSet result) {
 
         try {
             result.next();
@@ -32,22 +32,22 @@ public abstract class StudentSQl {
     }/*End_Of_readGradeFromDataBase*/
 
 
-    public static String showAllCourses(int studentId) {
-        DatabaseConnection.testConnection();
+    public  String showAllCourses(int studentId) {
+        testConnection();
         String query = Query.getCoursesName(studentId);
         try {
-            ResultSet courseName = DatabaseConnection.statement.executeQuery(query);
+            ResultSet courseName = statement.executeQuery(query);
             return readNameFromCourse(courseName);
         } catch (SQLException ex) {
             System.out.println(ex);
         } finally {
-            DatabaseConnection.closeConnection();
+            closeConnection();
         }
         return "Error SQlException";
     }/*End_Of_showAllCourses*/
 
 
-    private static String readNameFromCourse(ResultSet result) {
+    private  String readNameFromCourse(ResultSet result) {
         String tempCourses = "";
         try {
             while (result.next()) {
@@ -60,19 +60,19 @@ public abstract class StudentSQl {
         return tempCourses;
     }/*End_Of_readNameFromCourse*/
 
-    public static void makeSurvey(int StudentId, String courseName, String UrOpinion) {
+    public  void makeSurvey(int StudentId, String courseName, String UrOpinion) {
 
-        DatabaseConnection.testConnection();
+        testConnection();
 
         String query = Query.insertIntoSurvey(StudentId, courseName, UrOpinion);
         try {
 
-            DatabaseConnection.statement.executeUpdate(query);
+            statement.executeUpdate(query);
 
         } catch (SQLException ex) {
             System.out.println("Syntax Sql error");
         }
-        DatabaseConnection.closeConnection();
+        closeConnection();
     }/*End_Of_makeSurvey*/
 
 
