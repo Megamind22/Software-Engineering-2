@@ -9,7 +9,6 @@ public class CoursesModule extends CourseSQl{
 
     private  SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 
-    private ArrayList<CourseComponent> courses = new ArrayList<>();
 
     public CoursesModule() {
 
