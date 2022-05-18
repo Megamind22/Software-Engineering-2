@@ -6,7 +6,7 @@ import test.CourseComponent;
 
 public  class CourseSQl extends DatabaseConnection implements UpdateCourseI{
 
-    public  void addCourse(CourseComponent course) {
+    public  void addCourse(CourseComponent course) { //Aggregation like theater has Ticket office ..(2 classes in same level) 
         testConnection();
         String query = Query.addCourse(course);
         System.out.println(query);
